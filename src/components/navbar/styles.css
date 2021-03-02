@@ -1,0 +1,8 @@
+.navbar-container{
+    position: fixed;
+    border: 1px solid black;
+}
+
+.search-input{
+        background-color: black;
+}
