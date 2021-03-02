@@ -1,7 +1,10 @@
+import NavBar from '../../components/navbar/Navbar'
+
 export function LoginPage(){
     return(
         <div>
-            <div>Sou a Login Page</div>
+            <NavBar title={'Login'}/>
         </div>
     )
 }
+
