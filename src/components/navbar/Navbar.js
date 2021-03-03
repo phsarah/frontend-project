@@ -1,8 +1,8 @@
 import { Button, Heading, Stack, Flex } from "@chakra-ui/react"
 import { useHistory } from 'react-router-dom';
 import { Avatar, AvatarBadge, Wrap, FormControl, Input } from "@chakra-ui/react"
-import {  IconButton  } from "@chakra-ui/button"
-import { SearchIcon} from '@chakra-ui/icons'
+import './styles.css';
+
 
 
 function NavBar(props){
@@ -35,7 +35,7 @@ function NavBar(props){
                         </Button>
                     </Stack>
                 )
-            case('Login'):
+            case('Home-Logged'):
                     return(
                         <Stack 
                             direction="row" 
@@ -50,7 +50,21 @@ function NavBar(props){
                                 as="button"
                                 color="black"
                              >
-                                SIGNUP
+                                Logout
+                            </Button>
+                        </Stack>
+                    )
+                     case('Login-Page'):
+                    return(
+                        <Stack 
+                            direction="row" 
+                            spacing={4}
+                            align="center">
+                            <Button
+                                as="button"
+                                color="black"
+                             >
+                                É novo em Pixalabel?
                             </Button>
                         </Stack>
                     )
@@ -72,16 +86,18 @@ function NavBar(props){
                 padding="1.59rem"
                 bg="teal.500"
                 color="white">  
-                
-                <Flex 
+                <Flex
                     align="center" 
                      mr={5}>
-                     <Heading 
-                        as="h1" 
-                        size="lg" 
-                        letterSpacing={"-.1rem"}>
-                            Pixalabel
-                    </Heading>
+                    <logo id="logo"></logo>
+
+                    <Heading 
+                    as="h1" 
+                    size="lg" 
+                    letterSpacing={"-.1rem"}>
+                    <h1>Pixalabel</h1>
+                    </Heading> 
+                   
                 </Flex>
                
             <Button1/>

@@ -1,8 +1,11 @@
-.navbar-container{
-    position: fixed;
-    border: 1px solid black;
-}
-
 .search-input{
         background-color: black;
 }
+
+#logo{
+    background-image: url(../../assets/logo1.png);
+    width: 59px;
+    height: 60px;
+    background-size:cover;
+}
+
