@@ -1,6 +1,6 @@
 import { Button, Heading, Stack, Flex } from "@chakra-ui/react"
-import { useHistory } from 'react-router-dom';
-import { Avatar, AvatarBadge, Wrap, FormControl, Input } from "@chakra-ui/react"
+import { useHistory} from 'react-router-dom';
+import { Avatar, AvatarBadge, Wrap } from "@chakra-ui/react"
 import './styles.css';
 
 
@@ -13,10 +13,15 @@ function NavBar(props){
         history.goBack()
     }
 
+    const goToSignup = () => {
+        history.push("/signup")
+    }
+
     const Button1 = () => {
         switch (props.title) {
             case ('Home'):
                 return(
+                   
                     <Stack 
                         direction="row" 
                         spacing={4}
@@ -30,10 +35,12 @@ function NavBar(props){
                         <Button
                             as="button"
                             color="black"
+                            onClick={goBack}
                         >
                             SIGNUP
                         </Button>
                     </Stack>
+                   
                 )
             case('Home-Logged'):
                     return(
@@ -63,8 +70,26 @@ function NavBar(props){
                             <Button
                                 as="button"
                                 color="black"
+                                bg="#F6AD55"
+                                onClick={goToSignup}
                              >
                                 É novo em Pixalabel?
+                            </Button>
+                        </Stack>
+                    )
+                    case('Signup-Page'):
+                    return(
+                        <Stack 
+                            direction="row" 
+                            spacing={4}
+                            align="center">
+                            <Button
+                                as="button"
+                                color="black"
+                                bg="#F6AD55"
+                                
+                             >
+                                Voltar
                             </Button>
                         </Stack>
                     )
@@ -84,10 +109,12 @@ function NavBar(props){
                 justify="space-between"
                 wrap="wrap"
                 padding="1.59rem"
-                bg="teal.500"
-                color="white">  
+                bg="beige"
+               
+              >  
                 <Flex
                     align="center" 
+                    
                      mr={5}>
                     <logo id="logo"></logo>
 

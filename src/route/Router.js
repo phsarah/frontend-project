@@ -1,23 +1,26 @@
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-
+import SignupPage from '../pages/signupPage/SignupPage';
+import LoginPage from '../pages/loginPage/LoginPage'
 
 function Router(){
     return(
-        <BrowserRouter>
+            <BrowserRouter>
             <Switch>
                 <Route exact path="/">
                     {/* <HomePage/>*/}
                 </Route>
                 <Route exact path="/login">
-                    {/* <LoginPage/>*/}
+                    <LoginPage/>
                 </Route>
                 <Route exact path="/signup">
-                    {/* <SignupPage/>*/}
+                    <SignupPage/>
                 </Route>
                 <Route exact path="/profile">
                     {/* <ProfilePage/>*/}
                 </Route>
             </Switch>
-        </BrowserRouter>
+            </BrowserRouter>
     )
 }
+
+export default Router;

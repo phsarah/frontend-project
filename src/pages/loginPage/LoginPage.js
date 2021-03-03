@@ -1,38 +1,42 @@
 import NavBar from '../../components/navbar/Navbar'
-import { FormLabel, FormHelperText, FormControl, Input, Button } from "@chakra-ui/react"
+import {Input, Button, Flex } from "@chakra-ui/react"
+import useForm from '../../hooks/useForm'
 import './styles.css';
 
-export function LoginPage(){
+function LoginPage(){
+    
     return(
         <div>
-            <NavBar title={'Login-Page'}/>
+            <NavBar  title={'Login-Page'}/>
             <div className="container" >
                 <div className="menu">
                     <h1 id="title">
                         Seja bem-vinda(o) ao Pixalabel
                     </h1>
-                    <div className="form">
+                    <Flex className="form">
                         <Input 
-                            focusBorderColor="grey.400"
-                            placeholder="Email/Nickname"
+                            borderColor="grey"
+                            placeholder="E-mail ou Nickname"
                             type="email" 
+                            marginY="15px"
                         />
                         <Input 
-                            focusBorderColor="grey.400"
+                            borderColor="grey"
                             placeholder="Password"
                             type="password" 
                         />
-                    </div>
-                        <Button 
-                             as="button"
-                             color="black"
-                             className="form-button"
-                        >   Entrar
+                    </Flex>
+                    <Button 
+                        as="button"
+                        bg="#F6AD55"
+                        color="black"
+                        className="form-button"
+                    >       Entrar
                     </Button>
-                    
                 </div>
             </div>
         </div>
     )
 }
 
+export default LoginPage;

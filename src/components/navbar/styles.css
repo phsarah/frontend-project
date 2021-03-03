@@ -1,11 +1,15 @@
-.search-input{
-        background-color: black;
+.navbar-container{
+    
 }
+
+.search-input{
+    background-color: black;
+}
+
 
 #logo{
     background-image: url(../../assets/logo1.png);
-    width: 59px;
-    height: 60px;
+    width: 55px;
+    height: 43.7px;
     background-size:cover;
 }
-
