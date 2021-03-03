@@ -9,21 +9,26 @@ function LoginPage(){
         <div>
             <NavBar  title={'Login-Page'}/>
             <div className="container" >
+               
                 <div className="menu">
                     <h1 id="title">
-                        Seja bem-vinda(o) ao Pixalabel
+                        Seja bem-vinda(o) ao Pixalabel!
                     </h1>
                     <Flex className="form">
                         <Input 
+                            className="input"
                             borderColor="grey"
                             placeholder="E-mail ou Nickname"
                             type="email" 
                             marginY="15px"
+                            borderRadius="2xl"
                         />
                         <Input 
+                            className="input"
                             borderColor="grey"
-                            placeholder="Password"
+                            placeholder="Senha"
                             type="password" 
+                            borderRadius="2xl"
                         />
                     </Flex>
                     <Button 

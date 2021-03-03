@@ -3,15 +3,9 @@ import { useHistory} from 'react-router-dom';
 import { Avatar, AvatarBadge, Wrap } from "@chakra-ui/react"
 import './styles.css';
 
-
-
 function NavBar(props){
 
     const history = useHistory()
-
-    const goBack = () => {
-        history.goBack()
-    }
 
     const goToSignup = () => {
         history.push("/signup")
@@ -35,7 +29,6 @@ function NavBar(props){
                         <Button
                             as="button"
                             color="black"
-                            onClick={goBack}
                         >
                             SIGNUP
                         </Button>
@@ -109,20 +102,20 @@ function NavBar(props){
                 justify="space-between"
                 wrap="wrap"
                 padding="1.59rem"
-                bg="beige"
-               
+                bg="black"
+                boxShadow="xl"
               >  
                 <Flex
                     align="center" 
                     
                      mr={5}>
-                    <logo id="logo"></logo>
+                    <logo id="logo-navbar"></logo>
 
                     <Heading 
                     as="h1" 
                     size="lg" 
                     letterSpacing={"-.1rem"}>
-                    <h1>Pixalabel</h1>
+                    <h1 id="logo-name">Pixalabel</h1>
                     </Heading> 
                    
                 </Flex>
