@@ -1,13 +1,14 @@
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import SignupPage from '../pages/signupPage/SignupPage';
 import LoginPage from '../pages/loginPage/LoginPage'
+import HomePage from '../pages/homePage/HomePage'
 
 function Router(){
     return(
             <BrowserRouter>
             <Switch>
                 <Route exact path="/">
-                    {/* <HomePage/>*/}
+                    <HomePage/>
                 </Route>
                 <Route exact path="/login">
                     <LoginPage/>

@@ -80,8 +80,7 @@ function NavBar(props){
                                 as="button"
                                 color="black"
                                 bg="#F6AD55"
-                                
-                             >
+                            >
                                 Voltar
                             </Button>
                         </Stack>
@@ -98,24 +97,27 @@ function NavBar(props){
         <header className="navbar-container">
             <Flex 
                 as="nav"
-                align="center"
-                justify="space-between"
-                wrap="wrap"
-                padding="1.59rem"
                 bg="black"
+                wrap="wrap"
                 boxShadow="xl"
+                align="center"
+                padding="1.59rem"
+                justify="space-between"
               >  
                 <Flex
                     align="center" 
-                    
                      mr={5}>
-                    <logo id="logo-navbar"></logo>
+                    <div id="logo-navbar"></div>
 
                     <Heading 
-                    as="h1" 
-                    size="lg" 
-                    letterSpacing={"-.1rem"}>
-                    <h1 id="logo-name">Pixalabel</h1>
+                        as="h1" 
+                        size="lg" 
+                        letterSpacing={"-.1rem"}>
+                    <h1 
+                        id="logo-name"
+                    >
+                        Pixalabel
+                    </h1>
                     </Heading> 
                    
                 </Flex>
