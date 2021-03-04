@@ -1,22 +1,21 @@
 import { Button, Heading, Stack, Flex } from "@chakra-ui/react"
-import { useHistory } from 'react-router-dom';
-import { Avatar, AvatarBadge, Wrap, FormControl, Input } from "@chakra-ui/react"
-import {  IconButton  } from "@chakra-ui/button"
-import { SearchIcon} from '@chakra-ui/icons'
-
+import { useHistory} from 'react-router-dom';
+import { Avatar, AvatarBadge, Wrap } from "@chakra-ui/react"
+import './styles.css';
 
 function NavBar(props){
 
     const history = useHistory()
 
-    const goBack = () => {
-        history.goBack()
+    const goToSignup = () => {
+        history.push("/signup")
     }
 
     const Button1 = () => {
         switch (props.title) {
             case ('Home'):
                 return(
+                   
                     <Stack 
                         direction="row" 
                         spacing={4}
@@ -34,8 +33,9 @@ function NavBar(props){
                             SIGNUP
                         </Button>
                     </Stack>
+                   
                 )
-            case('Login'):
+            case('Home-Logged'):
                     return(
                         <Stack 
                             direction="row" 
@@ -50,7 +50,38 @@ function NavBar(props){
                                 as="button"
                                 color="black"
                              >
-                                SIGNUP
+                                Logout
+                            </Button>
+                        </Stack>
+                    )
+                     case('Login-Page'):
+                    return(
+                        <Stack 
+                            direction="row" 
+                            spacing={4}
+                            align="center">
+                            <Button
+                                as="button"
+                                color="black"
+                                bg="#F6AD55"
+                                onClick={goToSignup}
+                             >
+                                É novo em Pixalabel?
+                            </Button>
+                        </Stack>
+                    )
+                    case('Signup-Page'):
+                    return(
+                        <Stack 
+                            direction="row" 
+                            spacing={4}
+                            align="center">
+                            <Button
+                                as="button"
+                                color="black"
+                                bg="#F6AD55"
+                            >
+                                Voltar
                             </Button>
                         </Stack>
                     )
@@ -66,22 +97,29 @@ function NavBar(props){
         <header className="navbar-container">
             <Flex 
                 as="nav"
-                align="center"
-                justify="space-between"
+                bg="black"
                 wrap="wrap"
+                boxShadow="xl"
+                align="center"
                 padding="1.59rem"
-                bg="teal.500"
-                color="white">  
-                
-                <Flex 
+                justify="space-between"
+              >  
+                <Flex
                     align="center" 
                      mr={5}>
-                     <Heading 
+                    <div id="logo-navbar"></div>
+
+                    <Heading 
                         as="h1" 
                         size="lg" 
                         letterSpacing={"-.1rem"}>
-                            Pixalabel
-                    </Heading>
+                    <h1 
+                        id="logo-name"
+                    >
+                        Pixalabel
+                    </h1>
+                    </Heading> 
+                   
                 </Flex>
                
             <Button1/>

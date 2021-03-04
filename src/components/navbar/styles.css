@@ -1,8 +1,16 @@
-.navbar-container{
-    position: fixed;
-    border: 1px solid black;
-}
 
 .search-input{
-        background-color: black;
+    background-color: black;
+}
+
+
+#logo-navbar{
+    background-image: url(../../assets/logo2.png);
+    width: 50px;
+    height: 43.7px;
+    background-size:cover;
+}
+
+#logo-name{
+    color:white
 }
