@@ -1,0 +1,15 @@
+.container-grid{
+    display: grid;
+    grid-template-columns: 10vh 10vh 10vh;
+    grid-template-rows: 10vh 10vh;
+    column-gap: 100px;
+    row-gap: 100px;
+    justify-content: center;
+
+}
+
+.item{
+    width: 20vh;
+    height: 20vh;
+    background-color: pink;
+}

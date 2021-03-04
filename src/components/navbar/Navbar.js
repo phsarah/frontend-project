@@ -11,6 +11,12 @@ function NavBar(props){
         history.push("/signup")
     }
 
+
+    const logOut = () => {
+        localStorage.removeItem('token')
+        history.push("/")
+    }
+
     const Button1 = () => {
         switch (props.title) {
             case ('Home'):
@@ -49,6 +55,7 @@ function NavBar(props){
                             <Button
                                 as="button"
                                 color="black"
+                                onClick={logOut}
                              >
                                 Logout
                             </Button>
