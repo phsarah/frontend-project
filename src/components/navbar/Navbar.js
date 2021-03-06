@@ -1,26 +1,19 @@
 import { Button, Heading, Stack, Flex } from "@chakra-ui/react"
 import { useHistory} from 'react-router-dom';
 import { Avatar, AvatarBadge, Wrap } from "@chakra-ui/react"
+import { goToLogin, goToSignup, goToProfile } from '../../route/Coordinator'
 import './styles.css';
 
 function NavBar(props){
 
     const history = useHistory()
-
-    const goToSignup = () => {
-        history.push("/signup")
-    }
-
-
-    const logOut = () => {
-        localStorage.removeItem('token')
-        window.alert("Você saiu, estaremos te esperando :)")
+    
+    const logout = () => {
+        window.localStorage.removeItem('token')
+        window.alert("Você saiu, volte logo :D")
         history.push("/login")
     }
-    const goToProfile = () => {
-        history.push("/profile")
-    }
-
+    
     const Button1 = () => {
         switch (props.title) {
             case ('Home'):
@@ -33,12 +26,15 @@ function NavBar(props){
                         <Button
                             as="button"
                             color="black"
+                            onClick={() => goToLogin(history)}
+                            
                         >
                             LOGIN
                         </Button>
                         <Button
                             as="button"
                             color="black"
+                            onClick={() => goToSignup(history)}
                         >
                             SIGNUP
                         </Button>
@@ -52,14 +48,14 @@ function NavBar(props){
                             spacing={4}
                             align="center">
                             <Wrap>
-                            <Avatar onClick={goToProfile} cursor="pointer" boxSize="2.2em" src={`https://avatars.dicebear.com/api/avataaars/sarah.svg`}>
+                            <Avatar onClick={() => goToProfile(history)} cursor="pointer" boxSize="2.2em" src={`https://avatars.dicebear.com/api/avataaars/sarah.svg`}>
                                 <AvatarBadge boxSize="0.8em" bg="green.500" />
                             </Avatar>
                             </Wrap>
                             <Button
                                 as="button"
                                 color="black"
-                                onClick={logOut}
+                                onClick={logout}
                              >
                                 Logout
                             </Button>
@@ -75,7 +71,7 @@ function NavBar(props){
                                 as="button"
                                 color="black"
                                 bg="#F6AD55"
-                                onClick={goToSignup}
+                                onClick={() => goToSignup(history)}
                              >
                                 É novo em Pixalabel?
                             </Button>
@@ -91,6 +87,7 @@ function NavBar(props){
                                 as="button"
                                 color="black"
                                 bg="#F6AD55"
+                                onClick={() => goToLogin(history)}
                             >
                                 Voltar
                             </Button>

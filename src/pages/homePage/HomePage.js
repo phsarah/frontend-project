@@ -5,18 +5,9 @@ import './styles.css';
 
 function HomePage() {
 
-    const history = useHistory()
-
-    const returnMessageLogout = () => {
-            if(!localStorage.getItem('token')){
-            window.alert("Você foi deslogado")
-            history.push('/login')
-        }
-    }
     return(
         <div>
-            {returnMessageLogout}
-            <NavBar title={'Home-Logged'}/>
+            {window.localStorage.getItem("token")? <NavBar title={'Home-Logged'}/> : <NavBar title={'Home'}/>}
             <div className="container-grid"
             >
                <div className="item">ITEM 1</div>
@@ -27,7 +18,6 @@ function HomePage() {
                <div className="item">ITEM 6</div>
 
             </div>
-            {returnMessageLogout}
         </div>
     )
 }

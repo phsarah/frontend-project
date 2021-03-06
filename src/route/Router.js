@@ -17,9 +17,7 @@ function Router(){
                 <Route exact path="/signup">
                     <SignupPage/>
                 </Route>
-                <Route exact path="/profile">
-                    <ProfilePage/>
-                </Route>
+                
             </Switch>
             </BrowserRouter>
     )
