@@ -1,6 +1,4 @@
 import NavBar from '../../components/navbar/Navbar'
-import { useHistory} from 'react-router-dom';
-
 import './styles.css';
 
 function HomePage() {

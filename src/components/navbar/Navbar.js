@@ -1,7 +1,7 @@
 import { Button, Heading, Stack, Flex } from "@chakra-ui/react"
 import { useHistory} from 'react-router-dom';
 import { Avatar, AvatarBadge, Wrap } from "@chakra-ui/react"
-import { goToLogin, goToSignup, goToProfile } from '../../route/Coordinator'
+import { goToHome, goToLogin, goToSignup, goToProfile } from '../../route/Coordinator'
 import './styles.css';
 
 function NavBar(props){
@@ -103,6 +103,7 @@ function NavBar(props){
                                 as="button"
                                 color="black"
                                 bg="#F6AD55"
+                                onClick={() => goToHome(history)}
                             >
                                 Voltar
                             </Button>

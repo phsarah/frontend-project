@@ -1,0 +1,34 @@
+.container-grid{
+    display: grid;
+    grid-template-columns: [profile-info] 1fr [profile-collections] 1fr;
+    grid-template-rows: repeat(7, 1fr);
+    
+}
+.profile-info{
+    display: grid;
+    grid-column: profile-info;
+    background-color: pink;
+    justify-content: center;
+    padding-top: 10vh;
+    padding-bottom: 10vh;
+    margin-left: 30vh;
+    margin-right: 20vh;
+
+}
+.profile-collection{
+    display: grid;
+    grid-column: profile-collections;
+    background-color: blueviolet;
+    justify-content: center;
+}
+
+.item-photo{
+    background-color: white;
+    border-radius: 100%;
+
+}
+
+.item-name{
+    margin-top: 20px;
+    font-size: 30px;
+}
