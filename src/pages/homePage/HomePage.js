@@ -1,10 +1,21 @@
 import NavBar from '../../components/navbar/Navbar'
-import { Flex } from "@chakra-ui/react"
+import { useHistory} from 'react-router-dom';
+
 import './styles.css';
 
 function HomePage() {
+
+    const history = useHistory()
+
+    const returnMessageLogout = () => {
+            if(!localStorage.getItem('token')){
+            window.alert("Você foi deslogado")
+            history.push('/login')
+        }
+    }
     return(
         <div>
+            {returnMessageLogout}
             <NavBar title={'Home-Logged'}/>
             <div className="container-grid"
             >
@@ -16,6 +27,7 @@ function HomePage() {
                <div className="item">ITEM 6</div>
 
             </div>
+            {returnMessageLogout}
         </div>
     )
 }

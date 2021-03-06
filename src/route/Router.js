@@ -2,6 +2,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import SignupPage from '../pages/signupPage/SignupPage';
 import LoginPage from '../pages/loginPage/LoginPage'
 import HomePage from '../pages/homePage/HomePage'
+import ProfilePage from '../pages/profilePage/ProfilePage'
 
 function Router(){
     return(
@@ -17,7 +18,7 @@ function Router(){
                     <SignupPage/>
                 </Route>
                 <Route exact path="/profile">
-                    {/* <ProfilePage/>*/}
+                    <ProfilePage/>
                 </Route>
             </Switch>
             </BrowserRouter>

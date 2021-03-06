@@ -14,7 +14,11 @@ function NavBar(props){
 
     const logOut = () => {
         localStorage.removeItem('token')
-        history.push("/")
+        window.alert("Você saiu, estaremos te esperando :)")
+        history.push("/login")
+    }
+    const goToProfile = () => {
+        history.push("/profile")
     }
 
     const Button1 = () => {
@@ -48,7 +52,7 @@ function NavBar(props){
                             spacing={4}
                             align="center">
                             <Wrap>
-                            <Avatar boxSize="2.2em" src={`https://avatars.dicebear.com/api/avataaars/sarah.svg`}>
+                            <Avatar onClick={goToProfile} cursor="pointer" boxSize="2.2em" src={`https://avatars.dicebear.com/api/avataaars/sarah.svg`}>
                                 <AvatarBadge boxSize="0.8em" bg="green.500" />
                             </Avatar>
                             </Wrap>
@@ -78,6 +82,21 @@ function NavBar(props){
                         </Stack>
                     )
                     case('Signup-Page'):
+                    return(
+                        <Stack 
+                            direction="row" 
+                            spacing={4}
+                            align="center">
+                            <Button
+                                as="button"
+                                color="black"
+                                bg="#F6AD55"
+                            >
+                                Voltar
+                            </Button>
+                        </Stack>
+                    )
+                    case('Profile-Page'):
                     return(
                         <Stack 
                             direction="row" 

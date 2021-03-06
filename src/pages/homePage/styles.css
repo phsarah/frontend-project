@@ -1,15 +1,18 @@
 .container-grid{
     display: grid;
-    grid-template-columns: 10vh 10vh 10vh;
+    grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 10vh 10vh;
-    column-gap: 100px;
-    row-gap: 100px;
     justify-content: center;
+    height: 100vh;
+    background-color: rgb(241, 239, 239);
+    grid-row-gap: 10px;
+    grid-column-gap: 10px;
 
 }
 
 .item{
-    width: 20vh;
-    height: 20vh;
+    background-image: url("https://picsum.photos/200/300");
     background-color: pink;
+   
+    text-align:center;
 }
