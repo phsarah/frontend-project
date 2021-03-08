@@ -162,9 +162,13 @@ function NavBar(props){
                     <Heading 
                         as="h1" 
                         size="lg" 
-                        letterSpacing={"-.1rem"}>
+                        letterSpacing={"-.1rem"}
+                        cursor="pointer" 
+                        >
                     <h1 
                         id="logo-name"
+                        onClick={() => goToHome(history)}
+                        
                     >
                         Pixalabel
                     </h1>
