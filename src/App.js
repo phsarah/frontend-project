@@ -1,4 +1,3 @@
-import NavBar from './components/navbar/Navbar'
 import { ChakraProvider } from "@chakra-ui/react"
 import customTheme from "./customTheme/CustomTheme"
 import Router from './route/Router'
