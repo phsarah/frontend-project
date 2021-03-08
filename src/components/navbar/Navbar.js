@@ -1,3 +1,4 @@
+import {useState} from 'react'
 import { Button, Heading, Stack, Flex } from "@chakra-ui/react"
 import { useHistory} from 'react-router-dom';
 import { Avatar, AvatarBadge, Wrap } from "@chakra-ui/react"
@@ -5,9 +6,21 @@ import { goToHome, goToLogin, goToSignup, goToProfile } from '../../route/Coordi
 import './styles.css';
 
 function NavBar(props){
-
+    // const [show, setShow] = useState(false)
+    // const [classe, setClasse] = useState('hide')
     const history = useHistory()
     
+    // const showDiv = () => {
+    //     if(show === false){
+    //         setClasse("show")
+    //         setShow(true)
+    //     }
+    //     else{
+    //         setClasse("hide")
+    //         setShow(false)
+    //     }
+    // }
+
     const logout = () => {
         window.localStorage.removeItem('token')
         window.alert("Você saiu, volte logo :D")
@@ -47,9 +60,22 @@ function NavBar(props){
                             direction="row" 
                             spacing={4}
                             align="center">
+                            <Button
+                                as="button"
+                                color="black"
+                                fontSize="18px"
+                                // onClick={showDiv}
+                            >
+                                + Create
+                            </Button>
                             <Wrap>
-                            <Avatar onClick={() => goToProfile(history)} cursor="pointer" boxSize="2.2em" src={`https://avatars.dicebear.com/api/avataaars/sarah.svg`}>
-                                <AvatarBadge boxSize="0.8em" bg="green.500" />
+                            <Avatar 
+                                size="md" 
+                                onClick={() => goToProfile(history)} 
+                                cursor="pointer" 
+                                boxSize="2.2em" 
+                                src={`https://avatars.dicebear.com/api/avataaars/sarah.svg`}>
+                                <AvatarBadge boxSize="0.90em" bg="green.500" />
                             </Avatar>
                             </Wrap>
                             <Button
@@ -121,7 +147,7 @@ function NavBar(props){
         <header className="navbar-container">
             <Flex 
                 as="nav"
-                bg="black"
+                bg={props.color}
                 wrap="wrap"
                 boxShadow="xl"
                 align="center"
