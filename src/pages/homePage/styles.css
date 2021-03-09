@@ -1,5 +1,8 @@
 .container-home{
-    background-color: rgb(35, 9, 56);
+    /* background-color: rgb(35, 9, 56); */
+    background-image: url(../../assets/pexels-abdallah-maqboul-1591305.jpg);
+    background-size: cover;
+    
 }
 
 .container-grid-home{
@@ -7,7 +10,6 @@
     display: grid;
     justify-content: center;
     height: 100vh;
-   
 }
 
 
@@ -31,9 +33,9 @@
 .search{
     position: absolute;
     grid-row: search;
-    padding: 20px;
+    padding: 15px;
     width: 100%;
-    bottom: 85px;
+    bottom: 80px;
     border-radius: 10px;
 
 }

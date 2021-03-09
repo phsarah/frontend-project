@@ -38,7 +38,8 @@ function NavBar(props){
                         align="center">
                         <Button
                             as="button"
-                            color="black"
+                            color="white"
+                            variant="ghost"
                             onClick={() => goToLogin(history)}
                             
                         >
@@ -46,7 +47,8 @@ function NavBar(props){
                         </Button>
                         <Button
                             as="button"
-                            color="black"
+                            color="white"
+                            variant="ghost"
                             onClick={() => goToSignup(history)}
                         >
                             SIGNUP
@@ -62,8 +64,10 @@ function NavBar(props){
                             align="center">
                             <Button
                                 as="button"
-                                color="black"
-                                fontSize="18px"
+                                color="white"
+                                fontSize="15px"
+                                variant="outline"
+                                colorScheme="white"
                                 // onClick={showDiv}
                             >
                                 + Create
@@ -80,10 +84,13 @@ function NavBar(props){
                             </Wrap>
                             <Button
                                 as="button"
-                                color="black"
+                                color="red"
+                                fontSize="15px"
+                                variant="outline"
+                                colorScheme="red"
                                 onClick={logout}
-                             >
-                                Logout
+                            >
+                                Sair
                             </Button>
                         </Stack>
                     )
