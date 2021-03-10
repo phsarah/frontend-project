@@ -60,14 +60,14 @@ function NavBar(props){
                     return(
                         <Stack 
                             direction="row" 
-                            spacing={4}
+                            spacing={5}
                             align="center">
                             <Button
                                 as="button"
                                 color="white"
                                 fontSize="15px"
-                                variant="outline"
-                                colorScheme="white"
+                                variant="solid"
+                                colorScheme="purple"
                                 // onClick={showDiv}
                             >
                                 + Create
@@ -84,9 +84,9 @@ function NavBar(props){
                             </Wrap>
                             <Button
                                 as="button"
-                                color="red"
+                                color="white"
                                 fontSize="15px"
-                                variant="outline"
+                                variant="solid"
                                 colorScheme="red"
                                 onClick={logout}
                             >
