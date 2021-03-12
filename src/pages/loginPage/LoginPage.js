@@ -1,6 +1,7 @@
 import NavBar from '../../components/navbar/Navbar'
 import {Input, Button, Flex } from "@chakra-ui/react"
 import { useHistory} from 'react-router-dom';
+import BASE_URL from '../../constants/url'
 import useForm from '../../hooks/useForm'
 import axios from 'axios'
 import './styles.css';
@@ -9,7 +10,7 @@ import './styles.css';
 function LoginPage(){
     const history = useHistory()
     
-    const [form, Onchange] = useForm({
+    const [form, onChange] = useForm({
         email: "",
         password: ""
     })
@@ -20,7 +21,7 @@ function LoginPage(){
             password: form.password
         }
         
-        axios.post("http://localhost:3003/user/login", body)
+        axios.post(`${BASE_URL}/user/login`, body)
         .then((res) => {
             window.localStorage.setItem("token", res.data.token)
             history.push('/')
@@ -49,7 +50,7 @@ function LoginPage(){
                             marginY="15px"
                             borderRadius="2xl"
                             name={"email"}
-                            onChange={Onchange}
+                            onChange={onChange}
                            
                         />
                         
@@ -60,7 +61,7 @@ function LoginPage(){
                             borderRadius="2xl"
                             type="password" 
                             name={"password"}
-                            onChange={Onchange}
+                            onChange={onChange}
                         />
                     </Flex>
                     <Button 

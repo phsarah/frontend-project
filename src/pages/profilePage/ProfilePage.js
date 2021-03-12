@@ -1,20 +1,39 @@
 import axios from 'axios'
 import React, { useContext, useEffect, useState} from 'react';
 import { Avatar } from '@chakra-ui/avatar';
-import { Box, Input} from "@chakra-ui/react"
+import { Box, Input, Button, FormControl, FormLabel} from "@chakra-ui/react"
 import NavBar from '../../components/navbar/Navbar'
 import BASE_URL from '../../constants/url'
+import useForm from '../../hooks/useForm'
 import GlobalStateContext from '../../global/GlobalStateContext'
 import './styles.css';
 
 function ProfilePage(){
     const [collection, setCollection] = useState([])
+    const [mudarPage, setMudarPage] = useState('collection')
+    const [ divCreate, setDivCreate ] = useState(false)
     const { states, setters, requests } = useContext(GlobalStateContext)
+
+    const [form, onChange] = useForm({
+        name: ""
+    })
     
     useEffect(()=> {
         requests.getUser()
         getCollection()
     }, [])
+
+
+    const goToCollection = () =>{
+        setMudarPage('image')
+    }
+
+    const goToBack = () => {
+        setMudarPage('collection')
+    }
+    const goToCreate = () => {
+        setDivCreate(!divCreate)
+    }
     
     const getCollection = () => {
         const token = {
@@ -30,6 +49,19 @@ function ProfilePage(){
                 console.log(error)
             })
     }
+    const createCollection = () => {
+        const body = {
+            name: form.name
+        }
+        axios.post(`${BASE_URL}/collection/create`, body)
+            .then((res) => {
+                console.log(res)
+            })
+            .catch((error) => {
+                console.log(error)
+            })
+    }
+    
     const nameToLower = (states.user.name) && (states.user.name).toLowerCase()
     return(
         <div>
@@ -50,15 +82,25 @@ function ProfilePage(){
                     <input className="item-bio"/>
                     <div className="item-tag">tags</div>
                 </div>
-                <div className="collection">
+                { mudarPage === "collection"? <div className="collection">
                     <h1>Coleções</h1>
                    <div className="collection-grid">
+                        <Box 
+                            maxW="sm" 
+                            borderWidth="1px" 
+                            borderRadius="lg" 
+                            onClick={goToCreate}
+                            className="input-collection-grid"> 
+                            <p>+</p>
+                        </Box>
                         {collection.map(function(collection){
                             return <Box 
                                         maxW="sm" 
                                         borderWidth="1px" 
                                         borderRadius="lg" 
                                         overflow="hidden" 
+                                        onClick={goToCollection}
+                                        cursor="pointer" 
                                         className="item-collection-grid">
                                             <Box
                                                  color="gray.500"
@@ -79,18 +121,48 @@ function ProfilePage(){
                                              >
                                             {collection.collection_name}
                                             </Box>
-                                    </Box>
+                                     </Box>
                         })}
-                        <Box 
-                            maxW="sm" 
-                            borderWidth="1px" 
-                            borderRadius="lg" 
-                            overflow="hidden" 
-                            className="input-collection-grid"> 
-                            +
-                        </Box>
-                   </div>
-                </div>
+                        </div>
+                        {divCreate? <div className="div-create-collection">
+                                        <p>Criar coleção</p>
+                                        <FormControl id="first-name" isRequired>
+                                            <FormLabel 
+                                                color="white" 
+                                                marginTop="35px"
+                                                fontWeight="light"
+                                                fontSize="15px"
+                                            >
+                                                 Nome da coleção
+                                            </FormLabel>
+                                        <Input
+                                            color="white"
+                                            borderColor="black"
+                                            type="name" 
+                                            name={"name"}
+                                            onChange={onChange}
+                                            variant="filled"
+                                        />
+                                        </FormControl>
+                                        <Button 
+                                            colorScheme="white"
+                                            color="white" 
+                                            variant="outline"
+                                            onClick={createCollection}
+                                            >
+                                            Criar
+                                        </Button>
+                                    </div> 
+                                : <div className="hide"></div>}
+                        </div>  
+                        : mudarPage === "image" ? 
+                            <div className="collection">
+                                <button onClick={goToBack}>Voltar</button>
+                                <div className="collection-grid">
+                                </div>
+                            </div>
+                       : ""
+                }
             </body>
         </div>
     )
