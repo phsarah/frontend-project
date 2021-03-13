@@ -5,7 +5,7 @@ function SignupPage(){
 
     return(
         <div>
-            <NavBar title={'Signup-Page'}/>
+            <NavBar  color={"rgb(255, 200, 227)"} title={'Signup-Page'}/>
         </div>
     )
 }

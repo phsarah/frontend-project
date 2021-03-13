@@ -1,11 +1,12 @@
 import axios from 'axios'
 import React, { useContext, useEffect, useState} from 'react';
-import { Avatar } from '@chakra-ui/avatar';
-import { Box, Input, Button, FormControl, FormLabel} from "@chakra-ui/react"
+import GlobalStateContext from '../../global/GlobalStateContext'
 import NavBar from '../../components/navbar/Navbar'
+import Footer from '../../components/footer/footer'
 import BASE_URL from '../../constants/url'
 import useForm from '../../hooks/useForm'
-import GlobalStateContext from '../../global/GlobalStateContext'
+import { Box, Input, Button, FormControl, FormLabel} from "@chakra-ui/react"
+import { Avatar } from '@chakra-ui/avatar';
 import './styles.css';
 
 function ProfilePage(){
@@ -165,6 +166,7 @@ function ProfilePage(){
                        : ""
                 }
             </body>
+            <Footer/>
         </div>
     )
 }

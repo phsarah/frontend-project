@@ -189,7 +189,6 @@ function NavBar(props){
                 as="nav"
                 bg={props.color}
                 wrap="wrap"
-                // boxShadow="xl"
                 align="center"
                 padding="1.59rem"
                 justify="space-between"

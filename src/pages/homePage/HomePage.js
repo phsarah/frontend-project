@@ -4,24 +4,33 @@ import useForm from '../../hooks/useForm'
 import NavBar from '../../components/navbar/Navbar'
 import GlobalStateContext from '../../global/GlobalStateContext'
 import { Button } from "@chakra-ui/react"
+import Select from 'react-select'
 import BASE_URL from '../../constants/url'
 import './styles.css';
 
 function HomePage() {
     const [image, setImage] = useState([])
     const [create, setCreate] = useState({})
-    const [selectCollection , setSelectCollection ] = useState("")
+    const [tags, setTags] = useState([])
 
     const { states, setters, requests } = useContext(GlobalStateContext)
-    
+
     const [form, onChange] = useForm({
         subtitle: "",
         url: ""
     })
 
+    const options =  states.collection.map(collection => ({
+        value : collection.id,
+        label : collection.collection_name
+    }))
+
+    const [selectCollection , setSelectCollection] = useState(options)
+    
+
     useEffect(()=> {
-        requests.getUser()
         getImages()
+        requests.getUser()
         requests.getCollection()
     }, [])
     
@@ -47,22 +56,23 @@ function HomePage() {
         const body = {
             subtitle: form.subtitle,
             file: form.url,
-            collectionId: EventTarget.value
+            tagsId: "",
+            collectionId: selectCollection
+            
         }
-        axios.post(`${BASE_URL}/image/create`)
+        axios.post(`${BASE_URL}/image/create`, body, token)
         .then(() => {
-
+            alert("Foto adicionada")
         })
         .catch((error) => {
             console.log(error)
         })
     }
-
-    const options = states.collection.map(collection => ({
-        "name" : collection.collection_name,
-        "id" : collection.id,
-  
-      }))
+      
+    const handleChange = (e)=>{
+        setSelectCollection(e.value)
+        console.log(selectCollection)
+    }
 
     return (
         <div className="home">
@@ -75,11 +85,12 @@ function HomePage() {
                             placeholder="Subtítulo" 
                             name={"subtitle"}
                             onChange={onChange}/>
-                        <input placeholder="URL da imagem"/>
-                        <select>
-                            
-                        </select>
-
+                        <input 
+                            placeholder="URL da imagem"
+                            name={"url"}
+                            onChange={onChange}/>
+                        
+                        <Select options={options} onChange={handleChange}/>
                         <Button 
                             color="white"
                             bg="orange" 

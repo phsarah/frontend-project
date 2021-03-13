@@ -6,8 +6,8 @@ const useForm = (initialValues) => {
         const {value, name} = event.target;
         // const value = event.target.value
         // const name = event.target.name
-        setForm({ ...form, [name]: value})
-        // console.log(form)
+        setForm({ ...form, [name]: value })
+        //console.log(form)
     }
     return[form, onChange]
 }

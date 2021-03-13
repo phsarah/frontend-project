@@ -1,0 +1,9 @@
+#container-footer{
+    display: flex;
+    width: 100%;
+    background-color: black;
+    color: white;
+    justify-content: center;
+    padding: 20px;
+}
+
