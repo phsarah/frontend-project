@@ -1,32 +1,26 @@
-import {useState} from 'react'
-import { Button, Heading, Stack, Flex } from "@chakra-ui/react"
+import React, { useContext} from 'react';
 import { useHistory} from 'react-router-dom';
+import GlobalStateContext from '../../global/GlobalStateContext'
+import { Button, Heading, Stack, Flex } from "@chakra-ui/react"
 import { Avatar, AvatarBadge, Wrap } from "@chakra-ui/react"
 import { goToHome, goToLogin, goToSignup, goToProfile } from '../../route/Coordinator'
 import './styles.css';
 
 function NavBar(props){
-    // const [show, setShow] = useState(false)
-    // const [classe, setClasse] = useState('hide')
     const history = useHistory()
-    
-    // const showDiv = () => {
-    //     if(show === false){
-    //         setClasse("show")
-    //         setShow(true)
-    //     }
-    //     else{
-    //         setClasse("hide")
-    //         setShow(false)
-    //     }
-    // }
+    const { states, setters, requests } = useContext(GlobalStateContext)
 
+    const divShow = () => {
+        setters.setDivShow(!states.divShow)
+    }
     const logout = () => {
         window.localStorage.removeItem('token')
         window.alert("Você saiu, volte logo :D")
         history.push("/login")
     }
-    
+
+    const nameToLower = (states.user.name) && (states.user.name).toLowerCase()
+
     const Button1 = () => {
         switch (props.title) {
             case ('Home'):
@@ -38,8 +32,10 @@ function NavBar(props){
                         align="center">
                         <Button
                             as="button"
-                            color="white"
-                            variant="ghost"
+                            color="black"
+                            colorScheme="black"
+                            marginRight="10px"
+                            variant="link"
                             onClick={() => goToLogin(history)}
                             
                         >
@@ -47,8 +43,10 @@ function NavBar(props){
                         </Button>
                         <Button
                             as="button"
-                            color="white"
-                            variant="ghost"
+                            color="black"
+                            colorScheme="black"
+                            marginRight="15px"
+                            variant="link"
                             onClick={() => goToSignup(history)}
                         >
                             SIGNUP
@@ -65,12 +63,15 @@ function NavBar(props){
                             <Button
                                 as="button"
                                 color="white"
-                                fontSize="15px"
+                                fontSize="25px"
+                                height="46px"
+                                width="48px"
                                 variant="solid"
                                 colorScheme="purple"
-                                // onClick={showDiv}
+                                borderRadius="50px"
+                                onClick={divShow}
                             >
-                                + Create
+                                +
                             </Button>
                             <Wrap>
                             <Avatar 
@@ -78,7 +79,8 @@ function NavBar(props){
                                 onClick={() => goToProfile(history)} 
                                 cursor="pointer" 
                                 boxSize="2.2em" 
-                                src={`https://avatars.dicebear.com/api/avataaars/sarah.svg`}>
+                                marginRight="15px"
+                                src={`https://avatars.dicebear.com/api/avataaars/${nameToLower}.svg`}>
                                 <AvatarBadge boxSize="0.90em" bg="green.500" />
                             </Avatar>
                             </Wrap>
@@ -86,6 +88,7 @@ function NavBar(props){
                                 as="button"
                                 color="white"
                                 fontSize="15px"
+                                right="5px"
                                 variant="solid"
                                 colorScheme="red"
                                 onClick={logout}
@@ -97,34 +100,64 @@ function NavBar(props){
                      case('Login-Page'):
                     return(
                         <Stack 
-                            direction="row" 
-                            spacing={4}
-                            align="center">
-                            <Button
-                                as="button"
-                                color="black"
-                                bg="#F6AD55"
-                                onClick={() => goToSignup(history)}
-                             >
-                                É novo em Pixalabel?
-                            </Button>
-                        </Stack>
+                        direction="row" 
+                        spacing={4}
+                        align="center">
+                        <Button
+                            bg="black"
+                            as="button"
+                            color="white"
+                            colorScheme="black"
+                            marginRight="10px"
+                            variant="solid"
+                            borderRadius="20px"
+                            onClick={() => goToLogin(history)}
+                            
+                        >
+                            LOGIN
+                        </Button>
+                        <Button
+                            as="button"
+                            color="white"
+                            colorScheme="black"
+                            marginRight="15px"
+                            variant="link"
+                            onClick={() => goToSignup(history)}
+                        >
+                            SIGNUP
+                        </Button>
+                    </Stack>
                     )
                     case('Signup-Page'):
                     return(
                         <Stack 
-                            direction="row" 
-                            spacing={4}
-                            align="center">
-                            <Button
-                                as="button"
-                                color="black"
-                                bg="#F6AD55"
-                                onClick={() => goToLogin(history)}
-                            >
-                                Voltar
-                            </Button>
-                        </Stack>
+                        direction="row" 
+                        spacing={4}
+                        align="center">
+                        <Button
+                            as="button"
+                            color="white"
+                            colorScheme="black"
+                            marginRight="10px"
+                            variant="link"
+                            onClick={() => goToLogin(history)}
+                            
+                        >
+                            LOGIN
+                        </Button>
+                        <Button
+                             bg="black"
+                             as="button"
+                             color="white"
+                             colorScheme="black"
+                             marginRight="10px"
+                             variant="solid"
+                             borderRadius="20px"
+                            onClick={() => goToSignup(history)}
+                        >
+                            SIGNUP
+                        </Button>
+                    </Stack>
                     )
                     case('Profile-Page'):
                     return(

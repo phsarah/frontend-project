@@ -34,7 +34,7 @@ function LoginPage(){
         
     return(
         <div>
-            <NavBar  color={"black"} title={'Login-Page'}/>
+            <NavBar  color={"rgb(255, 142, 255)"} title={'Login-Page'}/>
             <div className="container" >
                
                 <div className="menu">

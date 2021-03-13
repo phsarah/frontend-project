@@ -5,8 +5,11 @@ import GlobalStateContext from './GlobalStateContext'
 
 const GlobalState = (props) => {
     const [user, setUser] = useState({});
-    const [drop, setDrop] = useState(false)
-    
+    const [image, setImage] = useState([]);
+    const [collection, setCollection] = useState([])
+    const [divShow, setDivShow] = useState(false)
+
+   
     const getUser = () => {
         const token = { 
             headers: {
@@ -21,9 +24,42 @@ const GlobalState = (props) => {
                 console.log(error)
             })
     } 
-    const states = { user };
-    const setters = { setUser }
-    const requests = { getUser };
+
+    const getImagesByUser = () => {
+        const token = { 
+            headers: {
+                Authorization: localStorage.getItem('token')
+              }
+        } 
+        axios.get(`${BASE_URL}/image/all`, token)
+            .then((res)=>{
+                console.log(res)
+                setImage(res.data)
+            })
+            .catch((error) => {
+                console.log(error)
+            })
+    }
+
+    const getCollection = () => {
+        const token = {
+            headers: {
+                Authorization: localStorage.getItem('token')
+            }
+        }
+        axios.get(`${BASE_URL}/user/collections`, token)
+            .then((res) => {
+                console.log(res)
+                setCollection(res.data)
+            })
+            .catch((error) => {
+                console.log(error)
+            })
+    }
+    
+    const states = { user, image, divShow, collection };
+    const setters = { setUser, setImage, setDivShow, setCollection }
+    const requests = { getUser, getImagesByUser, getCollection };
 
     const data = { states, setters, requests };
 

@@ -9,9 +9,10 @@ import GlobalStateContext from '../../global/GlobalStateContext'
 import './styles.css';
 
 function ProfilePage(){
-    const [collection, setCollection] = useState([])
+
     const [mudarPage, setMudarPage] = useState('collection')
     const [ divCreate, setDivCreate ] = useState(false)
+
     const { states, setters, requests } = useContext(GlobalStateContext)
 
     const [form, onChange] = useForm({
@@ -20,7 +21,8 @@ function ProfilePage(){
     
     useEffect(()=> {
         requests.getUser()
-        getCollection()
+        requests.getImagesByUser()
+        requests.getCollection()
     }, [])
 
 
@@ -35,31 +37,29 @@ function ProfilePage(){
         setDivCreate(!divCreate)
     }
     
-    const getCollection = () => {
+    
+    const createCollection = () => {
         const token = {
             headers: {
                 Authorization: localStorage.getItem('token')
             }
         }
-        axios.get(`${BASE_URL}/user/collections`, token)
-            .then((res) => {
-                setCollection(res.data)
-            })
-            .catch((error) => {
-                console.log(error)
-            })
-    }
-    const createCollection = () => {
+
         const body = {
             name: form.name
         }
-        axios.post(`${BASE_URL}/collection/create`, body)
-            .then((res) => {
-                console.log(res)
+        if(!body.name){
+            alert("Ops, parece que você está tentando criar uma coleção sem nome!")
+        }
+        else{
+            axios.post(`${BASE_URL}/collection/create`, body, token)
+            .then(() => {
+                setDivCreate(!divCreate)
             })
             .catch((error) => {
                 console.log(error)
             })
+        }
     }
     
     const nameToLower = (states.user.name) && (states.user.name).toLowerCase()
@@ -76,8 +76,8 @@ function ProfilePage(){
                         {states.user.nickname && <h2>@{states.user.nickname}</h2>}
                     </div>
                     <div className="profile-flex">
-                        <div className="item-collection">{collection.length} coleções</div>
-                        <div className="item-image">0 imagens</div>
+                        <div className="item-collection">{states.collection.length} coleções</div>
+                        <div className="item-image">{states.image.length} pixels</div>
                     </div>
                     <input className="item-bio"/>
                     <div className="item-tag">tags</div>
@@ -93,7 +93,7 @@ function ProfilePage(){
                             className="input-collection-grid"> 
                             <p>+</p>
                         </Box>
-                        {collection.map(function(collection){
+                        {states.collection.map(function(collection){
                             return <Box 
                                         maxW="sm" 
                                         borderWidth="1px" 
@@ -110,10 +110,12 @@ function ProfilePage(){
                                                 textTransform="uppercase"
                                                 ml="2"
                                                 >
-                                             30 imagens
+                                             30 pixels
                                             </Box>
                                             <Box
-                                                mt="1"
+                                            animation="running"
+                                                fontSize="17px"
+                                                ml="30"
                                                 fontWeight="semibold"
                                                 as="h4"
                                                 lineHeight="tight"
@@ -158,8 +160,7 @@ function ProfilePage(){
                         : mudarPage === "image" ? 
                             <div className="collection">
                                 <button onClick={goToBack}>Voltar</button>
-                                <div className="collection-grid">
-                                </div>
+                                <div className="collection-grid"></div>
                             </div>
                        : ""
                 }
