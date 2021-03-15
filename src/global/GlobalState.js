@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import BASE_URL from '../constants/url'
 import GlobalStateContext from './GlobalStateContext'
 
@@ -9,7 +9,11 @@ const GlobalState = (props) => {
     const [collection, setCollection] = useState([])
     const [divShow, setDivShow] = useState(false)
 
-   
+
+    useEffect(()=> {
+        getImagesByUser()
+    }, [])
+
     const getUser = () => {
         const token = { 
             headers: {
@@ -49,14 +53,13 @@ const GlobalState = (props) => {
         }
         axios.get(`${BASE_URL}/user/collections`, token)
             .then((res) => {
-                console.log(res)
                 setCollection(res.data)
             })
             .catch((error) => {
                 console.log(error)
             })
     }
-    
+
     const states = { user, image, divShow, collection };
     const setters = { setUser, setImage, setDivShow, setCollection }
     const requests = { getUser, getImagesByUser, getCollection };

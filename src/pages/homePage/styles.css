@@ -76,9 +76,9 @@
 }
 
 .image{
-    
     border-radius: 30px;
     max-width: 200px;
+    cursor: pointer;
 }
 
 .image-subtitle{
@@ -102,4 +102,25 @@
     border-radius: 50px;
     padding: 10px;
     width: 300px;
+}
+
+.show-card-image{
+    position: fixed;
+    left: 480px;
+    bottom: 200px;
+    background-color: rgba(0, 0, 0, 0.795);
+    padding-left: 50px;
+    padding-top: 30px;
+    padding-bottom: 50px;
+    width: 700px;
+
+}
+
+.image-card{
+    background-color: black;
+    position: relative;
+    border-radius: 30px;
+    max-width: 300px;
+    max-height: 500px;
+    cursor: pointer;
 }

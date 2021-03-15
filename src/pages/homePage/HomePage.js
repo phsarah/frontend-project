@@ -11,7 +11,10 @@ import './styles.css';
 function HomePage() {
     const [image, setImage] = useState([])
     const [create, setCreate] = useState({})
-    const [tags, setTags] = useState([])
+    const [cardImage, setCardImage] = useState(false)
+    const [idImage, setIdImage] = useState("")
+    const [file, setFile] = useState("")
+
 
     const { states, setters, requests } = useContext(GlobalStateContext)
 
@@ -74,6 +77,13 @@ function HomePage() {
         console.log(selectCollection)
     }
 
+    const imageClick = (e) => {
+        setIdImage(e.target.id)
+        setFile(e.target.id)
+        console.log(idImage, file)
+        setCardImage(!cardImage)
+    }
+
     return (
         <div className="home">
             <div className="container-header-grid">
@@ -115,10 +125,13 @@ function HomePage() {
                 <div className="item-images">
                     {image.map(function(image){
                         return <div >
-                            <img className="image" src={image.file}/>
+                            <img className="image" src={image.file} onClick={imageClick} id={image.file}/>
                             <p className="image-subtitle">{image.subtitle}</p>
                         </div>
                     })}
+                    { cardImage ? <div className="show-card-image"> 
+                        <img className="image-card" src={file}/>
+                    </div> : ""}
                 </div>
             </div>
         </div>

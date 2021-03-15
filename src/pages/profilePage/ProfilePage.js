@@ -3,6 +3,7 @@ import React, { useContext, useEffect, useState} from 'react';
 import GlobalStateContext from '../../global/GlobalStateContext'
 import NavBar from '../../components/navbar/Navbar'
 import Footer from '../../components/footer/footer'
+import CardImage from '../../components/cardImageCollection/cardImage'
 import BASE_URL from '../../constants/url'
 import useForm from '../../hooks/useForm'
 import { Box, Input, Button, FormControl, FormLabel} from "@chakra-ui/react"
@@ -13,6 +14,7 @@ function ProfilePage(){
 
     const [mudarPage, setMudarPage] = useState('collection')
     const [ divCreate, setDivCreate ] = useState(false)
+    const [idCollection, setIdCollection] = useState("")
 
     const { states, setters, requests } = useContext(GlobalStateContext)
 
@@ -27,8 +29,10 @@ function ProfilePage(){
     }, [])
 
 
-    const goToCollection = () =>{
+    const goToCollection = (e) =>{
         setMudarPage('image')
+        setIdCollection(e.target.id)
+        console.log(e.target.id)
     }
 
     const goToBack = () => {
@@ -96,6 +100,7 @@ function ProfilePage(){
                         </Box>
                         {states.collection.map(function(collection){
                             return <Box 
+                                        id={collection.id}
                                         maxW="sm" 
                                         borderWidth="1px" 
                                         borderRadius="lg" 
@@ -161,7 +166,9 @@ function ProfilePage(){
                         : mudarPage === "image" ? 
                             <div className="collection">
                                 <button onClick={goToBack}>Voltar</button>
-                                <div className="collection-grid"></div>
+                                <div className="collection-grid">
+                                    <CardImage id={idCollection}/>
+                                </div>
                             </div>
                        : ""
                 }
