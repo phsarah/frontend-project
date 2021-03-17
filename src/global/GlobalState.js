@@ -6,12 +6,14 @@ import GlobalStateContext from './GlobalStateContext'
 const GlobalState = (props) => {
     const [user, setUser] = useState({});
     const [image, setImage] = useState([]);
+    const [imageUser, setImageUser] = useState([]);
     const [collection, setCollection] = useState([])
     const [divShow, setDivShow] = useState(false)
 
 
     useEffect(()=> {
         getImagesByUser()
+        getImages()
     }, [])
 
     const getUser = () => {
@@ -29,7 +31,7 @@ const GlobalState = (props) => {
             })
     } 
 
-    const getImagesByUser = () => {
+    const getImages = () => {
         const token = { 
             headers: {
                 Authorization: localStorage.getItem('token')
@@ -37,8 +39,23 @@ const GlobalState = (props) => {
         } 
         axios.get(`${BASE_URL}/image/feed`, token)
             .then((res)=>{
-                console.log(res)
                 setImage(res.data)
+            })
+            .catch((error) => {
+                console.log(error)
+            })
+    }
+
+    const getImagesByUser = () => {
+        const token = { 
+            headers: {
+                Authorization: localStorage.getItem('token')
+              }
+        } 
+        axios.get(`${BASE_URL}/image/all`, token)
+            .then((res)=>{
+                console.log(res)
+                setImageUser(res.data)
             })
             .catch((error) => {
                 console.log(error)
@@ -61,9 +78,9 @@ const GlobalState = (props) => {
     }
 
 
-    const states = { user, image, divShow, collection };
-    const setters = { setUser, setImage, setDivShow, setCollection }
-    const requests = { getUser, getImagesByUser, getCollection };
+    const states = { user, image, divShow, collection, imageUser };
+    const setters = { setUser, setImage, setDivShow, setCollection, setImageUser }
+    const requests = { getUser, getImages, getCollection, getImagesByUser };
 
     const data = { states, setters, requests };
 

@@ -95,7 +95,7 @@ function HomePage() {
                     </div> 
                         : <section className="container-section-home">   
                             { states.user.name? <h1 className="title-logged">
-                                {states.user.name && <h1>Oie, {states.user.name}</h1>}
+                                {states.user.name && <h1>Olá, {states.user.name}</h1>}
                             </h1> : <h1 className="title-home">
                                 Uma comunidade para compartilhar suas fotos favoritas.
                             </h1> }

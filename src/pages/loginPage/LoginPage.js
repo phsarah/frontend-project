@@ -36,7 +36,7 @@ function LoginPage(){
         
     return(
         <div>
-            <NavBar  color={"rgb(255, 200, 227)"} title={'Login-Page'}/>
+            <NavBar  color={"rgb(131, 17, 72)"} title={'Login-Page'}/>
             <div className="container" >
                
                 <div className="menu">
@@ -75,7 +75,7 @@ function LoginPage(){
                     </Flex>
                     <Button 
                         as="button"
-                        bg="khaki"
+                        bg="burlywood"
                         color="black"
                         className="form-button"
                         onClick={logIn}

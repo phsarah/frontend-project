@@ -97,7 +97,7 @@ function ProfilePage(){
                     </div>
                     <div className="profile-flex">
                         <div className="item-collection">{states.collection.length} coleções</div>
-                        <div className="item-image">{states.image.length} pixels</div>
+                        <div className="item-image">{states.imageUser.length} pixels</div>
                     </div>
                     <input className="item-bio"/>
                     <div className="item-tag">tags</div>
