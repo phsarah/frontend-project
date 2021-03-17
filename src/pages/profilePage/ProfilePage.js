@@ -3,7 +3,7 @@ import React, { useContext, useEffect, useState} from 'react';
 import GlobalStateContext from '../../global/GlobalStateContext'
 import NavBar from '../../components/navbar/Navbar'
 import Footer from '../../components/footer/footer'
-import CardImage from '../../components/cardImageCollection/cardImage'
+import CardImage from '../../components/cardImageProfile/cardImage'
 import BASE_URL from '../../constants/url'
 import useForm from '../../hooks/useForm'
 import { Box, Input, Button, FormControl, FormLabel} from "@chakra-ui/react"
@@ -15,6 +15,7 @@ function ProfilePage(){
     const [mudarPage, setMudarPage] = useState('collection')
     const [ divCreate, setDivCreate ] = useState(false)
     const [idCollection, setIdCollection] = useState("")
+    const [imagesCollection, setImagesCollection] = useState([])
 
     const { states, setters, requests } = useContext(GlobalStateContext)
 
@@ -26,13 +27,15 @@ function ProfilePage(){
         requests.getUser()
         requests.getImagesByUser()
         requests.getCollection()
+        
     }, [])
 
+   
 
     const goToCollection = (e) =>{
-        setMudarPage('image')
         setIdCollection(e.target.id)
-        console.log(e.target.id)
+        setMudarPage('image')
+        getImagesByCollection()
     }
 
     const goToBack = () => {
@@ -67,6 +70,18 @@ function ProfilePage(){
         }
     }
     
+    const getImagesByCollection = () => {
+        axios.get(`${BASE_URL}/image/collection/${idCollection}`)
+        .then((res) => {
+            setImagesCollection(res.data)
+            console.log(imagesCollection)
+        })
+        .catch((error) => {
+            console.log(error)
+        })
+    }
+
+
     const nameToLower = (states.user.name) && (states.user.name).toLowerCase()
     return(
         <div>
@@ -116,7 +131,6 @@ function ProfilePage(){
                                                 textTransform="uppercase"
                                                 ml="2"
                                                 >
-                                             30 pixels
                                             </Box>
                                             <Box
                                             animation="running"
@@ -167,11 +181,17 @@ function ProfilePage(){
                             <div className="collection">
                                 <button onClick={goToBack}>Voltar</button>
                                 <div className="collection-grid">
-                                    <CardImage id={idCollection}/>
+                                    {!imagesCollection.length? <p>Não tem images</p> :
+                                        imagesCollection.map(function(infos){
+                                            return (
+                                            <CardImage file={infos.file}/>
+                                            )
+                                        })
+                                    }
                                 </div>
                             </div>
-                       : ""
-                }
+                        : ""
+                    }
             </body>
             <Footer/>
         </div>

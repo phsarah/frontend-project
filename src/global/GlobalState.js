@@ -35,7 +35,7 @@ const GlobalState = (props) => {
                 Authorization: localStorage.getItem('token')
               }
         } 
-        axios.get(`${BASE_URL}/image/all`, token)
+        axios.get(`${BASE_URL}/image/feed`, token)
             .then((res)=>{
                 console.log(res)
                 setImage(res.data)
@@ -59,6 +59,7 @@ const GlobalState = (props) => {
                 console.log(error)
             })
     }
+
 
     const states = { user, image, divShow, collection };
     const setters = { setUser, setImage, setDivShow, setCollection }

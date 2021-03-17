@@ -16,7 +16,7 @@ function NavBar(props){
     const logout = () => {
         window.localStorage.removeItem('token')
         window.alert("Você saiu, volte logo :D")
-        history.push("/login")
+        history.push("/")
     }
 
     const nameToLower = (states.user.name) && (states.user.name).toLowerCase()
@@ -30,6 +30,17 @@ function NavBar(props){
                         direction="row" 
                         spacing={4}
                         align="center">
+                        <Button
+                            bg="black"
+                            as="button"
+                            color="white"
+                            colorScheme="black"
+                            marginRight="10px"
+                            variant="solid"
+                            borderRadius="20px"                            
+                        >
+                            HOME
+                        </Button>
                         <Button
                             as="button"
                             color="black"
@@ -104,6 +115,16 @@ function NavBar(props){
                         spacing={4}
                         align="center">
                         <Button
+                            as="button"
+                            color="white"
+                            colorScheme="black"
+                            marginRight="15px"
+                            variant="link"  
+                            onClick={() => goToHome(history)} 
+                        >
+                            HOME
+                        </Button>
+                        <Button
                             bg="black"
                             as="button"
                             color="white"
@@ -134,6 +155,16 @@ function NavBar(props){
                         direction="row" 
                         spacing={4}
                         align="center">
+                        <Button
+                            as="button"
+                            color="white"
+                            colorScheme="black"
+                            marginRight="15px"
+                            variant="link"  
+                            onClick={() => goToHome(history)} 
+                        >
+                            HOME
+                        </Button>
                         <Button
                             as="button"
                             color="white"

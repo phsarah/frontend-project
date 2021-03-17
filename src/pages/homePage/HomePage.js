@@ -9,12 +9,9 @@ import BASE_URL from '../../constants/url'
 import './styles.css';
 
 function HomePage() {
-    const [image, setImage] = useState([])
-    const [create, setCreate] = useState({})
     const [cardImage, setCardImage] = useState(false)
     const [idImage, setIdImage] = useState("")
     const [file, setFile] = useState("")
-
 
     const { states, setters, requests } = useContext(GlobalStateContext)
 
@@ -32,22 +29,10 @@ function HomePage() {
     
 
     useEffect(()=> {
-        getImages()
         requests.getUser()
         requests.getCollection()
     }, [])
     
-
-    const getImages = () => {
-
-        axios.get(`${BASE_URL}/image/feed`)
-        .then((res) => {
-            setImage(res.data)
-        })
-        .catch((error) => {
-            console.log(error)
-        })
-    }
 
     const createImage = () => {
 
@@ -74,13 +59,11 @@ function HomePage() {
       
     const handleChange = (e)=>{
         setSelectCollection(e.value)
-        console.log(selectCollection)
     }
 
     const imageClick = (e) => {
         setIdImage(e.target.id)
         setFile(e.target.id)
-        console.log(idImage, file)
         setCardImage(!cardImage)
     }
 
@@ -123,7 +106,7 @@ function HomePage() {
             </div>
             <div className="container-images">
                 <div className="item-images">
-                    {image.map(function(image){
+                    {states.image.map(function(image){
                         return <div >
                             <img className="image" src={image.file} onClick={imageClick} id={image.file}/>
                             <p className="image-subtitle">{image.subtitle}</p>
@@ -131,6 +114,7 @@ function HomePage() {
                     })}
                     { cardImage ? <div className="show-card-image"> 
                         <img className="image-card" src={file}/>
+                       
                     </div> : ""}
                 </div>
             </div>
