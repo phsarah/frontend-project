@@ -1,7 +1,10 @@
+import React from 'react'
 import NavBar from '../../components/navbar/Navbar'
-import {Input, Button, Flex } from "@chakra-ui/react"
+import {Input, Button, Flex, FormLabel } from "@chakra-ui/react"
 import { useHistory} from 'react-router-dom';
+import BASE_URL from '../../constants/url'
 import useForm from '../../hooks/useForm'
+import Footer from '../../components/footer/footer'
 import axios from 'axios'
 import './styles.css';
 
@@ -9,7 +12,7 @@ import './styles.css';
 function LoginPage(){
     const history = useHistory()
     
-    const [form, Onchange] = useForm({
+    const [form, onChange] = useForm({
         email: "",
         password: ""
     })
@@ -20,7 +23,7 @@ function LoginPage(){
             password: form.password
         }
         
-        axios.post("http://localhost:3003/user/login", body)
+        axios.post(`${BASE_URL}/user/login`, body)
         .then((res) => {
             window.localStorage.setItem("token", res.data.token)
             history.push('/')
@@ -33,47 +36,54 @@ function LoginPage(){
         
     return(
         <div>
-            <NavBar  title={'Login-Page'}/>
+            <NavBar  color={"rgb(131, 17, 72)"} title={'Login-Page'}/>
             <div className="container" >
                
                 <div className="menu">
+                    <div className="logo-login"></div>
                     <h1 id="title">
                         Bem-vinda(o) ao Pixalabel!
                     </h1>
                     <Flex className="form">
-                        <Input 
-                            className="input-login"
-                            borderColor="grey"
-                            placeholder="E-mail ou Nickname"
-                            type="email" 
-                            marginY="15px"
-                            borderRadius="2xl"
-                            name={"email"}
-                            onChange={Onchange}
+                        <FormLabel>
+                            E-mail ou nickname
+                            <Input 
+                                className="input-login"
+                                borderColor="grey"
+                                type="email" 
+                                variant="outline"
+                                borderRadius="2xl"
+                                name={"email"}
+                                onChange={onChange}
                            
-                        />
-                        
+                            />
+                        </FormLabel>
+                       
+                        <FormLabel>
+                            Senha
                         <Input 
                             className="input-login"
-                            placeholder="Senha"
                             borderColor="grey"
+                            variant="outline"
                             borderRadius="2xl"
                             type="password" 
                             name={"password"}
-                            onChange={Onchange}
+                            onChange={onChange}
                         />
+                        </FormLabel>
+                        
                     </Flex>
                     <Button 
                         as="button"
-                        bg="#F6AD55"
+                        bg="burlywood"
                         color="black"
                         className="form-button"
-                        borderRadius="xl"
                         onClick={logIn}
                     >       Entrar
                     </Button>
                 </div>
             </div>
+            <Footer/>
         </div>
     )
 }

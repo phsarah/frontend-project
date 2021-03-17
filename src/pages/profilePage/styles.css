@@ -1,0 +1,153 @@
+.container-grid{
+    display: grid;
+    grid-template-columns: [profile-info] 1fr [profile-collections] 2.5fr;
+    grid-template-rows: 1fr;
+    height: 100vh;
+    column-gap: 10px;
+    background-color: black;
+}
+.profile-info{
+    display: grid;
+    grid-template-rows: 0fr [photo] 0.1fr [name] 0.1fr 0.1fr 0.1fr;
+    text-align: center;
+    grid-column: profile-info;
+    background-color: purple;
+    justify-content: center;
+    margin-left: 10px;
+    border-radius: 30px;
+    padding-top: 50px;
+}
+
+.item-photo{
+    position: absolute;
+    grid-row: photo;
+}
+
+.item-name{
+    color:white;
+    position: relative;
+    margin-top: 20px;
+    font-size: 30px;
+    right: 47px;
+}
+.item-nickname{
+    color: rgb(175, 175, 175);
+    position: relative;
+    bottom: 8px;
+    right: 55px;
+}
+
+.item-collection{
+    color: white;
+}
+
+.item-image{
+    color:white;
+}
+
+.profile-flex{
+    display: flex;
+    justify-content: space-around;
+}
+
+.item-bio{
+    margin-top: 20px;
+    height: 100px;
+}
+
+.collection{
+    background-color: rgb(219, 207, 202);
+    border-radius: 30px;
+    font-weight: lighter;
+}
+
+.collection > h1{
+    font-size: 34px;
+    padding-top: 5px;
+    padding-left: 50px;
+
+}
+.collection > button{
+    font-size: 20px;
+    margin: 10px 10px 10px 50px;
+    padding: 5px;
+}
+
+.collection-grid{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    border-bottom: 30px;
+    column-gap: 10px;
+    row-gap: 10px;
+    background-color: rgb(219, 207, 202);
+    border-top: 1px solid white;
+}
+
+.collection-images{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    border-radius: 30px;
+    column-gap: 10px;
+    row-gap: 10px;
+    width: 100vh;
+    background-color: rgb(219, 207, 202);
+}
+
+.item-collection-grid{
+    margin: 20px;
+    background-color: white;
+    width: 150px;
+    height: 150px;
+}
+
+.input-collection-grid{
+    position: relative;
+    text-align: center;
+    cursor: pointer;
+    font-size: 85px;
+    margin: 20px;
+    background-color: white;
+    width: 150px;
+    height: 150px;
+}
+
+.div-create-collection{
+    position: absolute;
+    background-color: rgb(73, 101, 124);
+    border-radius: 30px;
+    top: 100px;
+    right: 400px;
+    width: 390px;
+    height: 370px;
+    padding: 1vh 4vh 0 4vh;
+}
+
+.div-create-collection > p{
+    color: white;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 18px;
+    font-size: 25px;
+    border-bottom: 1px solid white;
+}
+
+.div-create-collection > input{
+    margin-top: 70px;
+}
+
+.div-create-collection > button{
+    position: relative;
+    left: 130px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 18px;
+    margin-top: 50px;
+
+}
+.hide{
+    display: none;
+}
+
+
